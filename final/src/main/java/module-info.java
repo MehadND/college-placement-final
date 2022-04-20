@@ -6,6 +6,7 @@ module org.openjfx {
 	requires org.apache.poi.poi;
 	requires org.apache.poi.ooxml;
 	requires java.mail;
+	requires org.jsoup;
 
     opens org.openjfx to javafx.fxml;
     exports org.openjfx;

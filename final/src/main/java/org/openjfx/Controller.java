@@ -129,32 +129,32 @@ public class Controller {
 			}
 	        });
 	   
-//	   browseFilesButton.setOnMouseEntered(new EventHandler<Event>() {
-//	        
-//			@Override
-//			public void handle(Event event) {
-//				// TODO Auto-generated method stub
-//		     	   browseFilesButton.setStyle("-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");;
-//
-//			}
-//	        });
-//	   
-//	   openSavedButton.setOnMouseEntered(new EventHandler<Event>() {
-//	        
-//			@Override
-//			public void handle(Event event) {
-//				// TODO Auto-generated method stub
-//		     	   openSavedButton.setStyle("-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");;
-//
-//			}
-//	        });
+	   browseFilesButton.setOnMouseEntered(new EventHandler<Event>() {
+	        
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+		     	   browseFilesButton.setStyle("-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");;
+
+			}
+	        });
+	   
+	   openSavedButton.setOnMouseEntered(new EventHandler<Event>() {
+	        
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+		     	   openSavedButton.setStyle("-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");;
+
+			}
+	        });
 	}
 	
 	@FXML
 	public void mouseExiting(){
 	   loginButton.setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:2; ");
-//	   browseFilesButton.setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:2;");
-//	   openSavedButton.setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:2;");
+	   browseFilesButton.setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:2;");
+	   openSavedButton.setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:2;");
 
 	}
 	
@@ -164,6 +164,7 @@ public class Controller {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("BeyondTravel Login");
+		//WindowStyle.allowDrag(root, stage);
 		stage.show();
 	}
 
@@ -178,35 +179,48 @@ public class Controller {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("BeyondTravel Application");
+		//WindowStyle.allowDrag(root, stage);
 		stage.show();
-
-
 	}
 	
-	/*
-	 * public void manualParsers() { System.out.println("Select a file to parse");
-	 * try { pdfReader = new ParsePDFFiles();
-	 * 
-	 * // if(Desktop.isDesktopSupported()) // { // d = Desktop.getDesktop(); // } //
-	 * try // { // d.open(attachmentsFolder); // } catch (IOException ioException) {
-	 * // ioException.printStackTrace(); // }
-	 * 
-	 * pdfReader.readFile(); boolean pdfFileSaved = pdfReader.writeChecker();
-	 * 
-	 * 
-	 * if(pdfFileSaved == true) messageLabel.setText("File Saved");
-	 * //messageLabel.setText("File "+pdfReader.getFilesReadList().toString()
-	 * +".xlsx saved");
-	 * 
-	 * else messageLabel.setText("File Not Saved");
-	 * 
-	 * 
-	 * 
-	 * } catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } }
-	 * 
-	 * public void openExports() { if(Desktop.isDesktopSupported()) { d =
-	 * Desktop.getDesktop(); } try { d.open(savedFileLocation); } catch (IOException
-	 * ioException) { ioException.printStackTrace(); } }
-	 */
+	public void handleBrowseFiles()
+	{
+		//add parsers functionality
+		System.out.println("Clicked Browse Files!");
+//		if(Desktop.isDesktopSupported())
+//		{
+//			d = Desktop.getDesktop();
+//		}
+//    	try
+//		{
+//			d.open(attachmentsFolder);
+//		} catch (IOException ioException) {
+//			ioException.printStackTrace();
+//		}
+		
+    	try {
+    		pdfReader = new ParsePDFFiles();
+			pdfReader.readFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void openExports()
+	{
+		//add parsers functionality
+		System.out.println("Clicked Exports!");
+		if(Desktop.isDesktopSupported())
+		{
+			d = Desktop.getDesktop();
+		}
+    	try
+		{
+			d.open(savedFileLocation);
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
+
+	}
 }
