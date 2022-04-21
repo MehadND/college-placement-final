@@ -4,6 +4,8 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
 
+import org.openjfx.Controller;
+
 import com.college.placement.parsers.ParsePDFFiles;
 
 import java.io.*;
@@ -14,6 +16,7 @@ public class SavingAttachments {
 	private String fileExtensionType;
 	
 	ParsePDFFiles pdfFile;
+	Controller controller;
 
 	public SavingAttachments() {
 		inputStream = null;
@@ -25,6 +28,7 @@ public class SavingAttachments {
 	public void saveEmailAttachments(Object emailContent) throws MessagingException, IOException {
 		try {
 			pdfFile = new ParsePDFFiles();
+			controller = new Controller();
 			if (emailContent instanceof Multipart) {
 				Multipart multipart = (Multipart) emailContent;
 				int partsCounter = multipart.getCount();
@@ -51,7 +55,7 @@ public class SavingAttachments {
 						}
 						String attachmentFileName = "Attachments/" + bodyPart.getFileName();
 						System.out.println("\nFilename.... " + attachmentFileName);
-						//GUI_View.getShowListOfEmail().append("Filename: " + attachmentFileName + "\n");
+						controller.getShowAttachmentsList().appendText("Filename: " + attachmentFileName + "\n");
 						outputStream = new FileOutputStream(new File(attachmentFileName));
 						inputStream = bodyPart.getInputStream();
 						int k;

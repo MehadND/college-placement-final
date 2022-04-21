@@ -8,34 +8,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
    <children>
-      <Button fx:id="loginButton" layoutX="79.0" layoutY="315.0" mnemonicParsing="false" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" onAction="#switchToScene2" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Login" />
-      <TextField fx:id="emailAddressField" layoutX="51.0" layoutY="161.0" prefHeight="25.0" prefWidth="170.0"  promptText="Enter email address..." />
+      <Button fx:id="loginButton" layoutX="79.0" layoutY="315.0" mnemonicParsing="false" onAction="#switchToScene2" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Login" />
+      <TextField fx:id="emailAddressField" layoutX="51.0" layoutY="161.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter email address..." />
       <PasswordField fx:id="emailPasswordField" layoutX="51.0" layoutY="218.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter email password..." />
-      <Label fx:id="statusLabel" alignment="CENTER" layoutX="51.0" layoutY="265.0" prefHeight="25.0" prefWidth="170.0" text="Status:" textFill="#ff7171">
+      <Label fx:id="statusLabel" alignment="CENTER" layoutX="51.0" layoutY="265.0" prefHeight="27.0" prefWidth="170.0" text="Status:" textFill="#ff7171">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
       <Separator layoutX="288.0" layoutY="67.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="12.0" />
-      <Button fx:id="browseFilesButton" layoutX="365.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#handleBrowseFiles" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Browse Files" />
+      <Button fx:id="browseFilesButton" layoutX="385.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleParsers" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Browse Files" />
       <Label layoutX="102.0" layoutY="87.0" prefHeight="38.0" prefWidth="69.0" text="EMAIL" textAlignment="CENTER" textFill="#73a9ff" underline="true">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="373.0" layoutY="87.0" prefHeight="38.0" prefWidth="97.0" text="PARSERS" textAlignment="CENTER" textFill="#73a9ff" underline="true">
+      <Label layoutX="393.0" layoutY="87.0" prefHeight="38.0" prefWidth="97.0" text="PARSERS" textAlignment="CENTER" textFill="#73a9ff" underline="true">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="337.0" layoutY="265.0" prefHeight="222.0" prefWidth="201.0" text="Message" textFill="#ff7171" wrapText="true">
+      <Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="341.0" layoutY="271.0" prefHeight="27.0" prefWidth="170.0" text="Message" textFill="#ff7171" wrapText="true">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="openSavedButton" layoutX="365.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#openExports" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Open Exports" />
+      <Button fx:id="openSavedButton" layoutX="385.0" layoutY="216.0" mnemonicParsing="false" onAction="#openSaves" onMouseEntered="#mouseEntering" onMouseExited="#mouseExiting" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: null; -fx-border-width: 2; -fx-border-color: black;" text="Open Exports" />
    </children>
 </AnchorPane>
