@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
+import com.college.placement.connectivity.Utility;
+
 import connector.CSV_Conversion;
 import functions.Func;
 
@@ -36,7 +38,7 @@ public class PDF_Parser {
 				parseHertz(parsedPDFText);
 			} else if (parsedPDFText.contains("EUROPCAR")) {
 				parseEuropCar(parsedPDFText);
-			} else if (parsedPDFText.contains("ENTERPRISE")) {
+			} else if (parsedPDFText.contains("Enterprise")) {
 				// parseEnterprise(parsedPDFText);
 			}
 		} finally {
@@ -86,7 +88,7 @@ public class PDF_Parser {
 		data = Func.removeDuplicates(data);
 
 		fileName = "CarHire_Invoices";
-		dir = "C:/Users/A00275711/Documents/CSV_Files";
+		dir = "C:/Users/"+Utility.user+"/Documents/CSV_Files";
 		// unsorted Array -> sorted Array -> CSV-Converter
 		String[] sortedArr = { data.get(3), provider, data.get(0), data.get(2), data.get(6), data.get(1), data.get(4),
 				data.get(10), data.get(11), data.get(7), data.get(9), data.get(8), payType, data.get(5) };
@@ -133,7 +135,7 @@ public class PDF_Parser {
 		data = Func.removeDuplicates(data);
 
 		fileName = "CarHire_Invoices";
-		dir = "C:/Users/A00275711/Documents/CSV_Files";
+		dir = "C:/Users/"+Utility.user+"/Documents/CSV_Files";
 		String[] sortedArr = { data.get(3), provider, data.get(0), data.get(1), data.get(7), data.get(3), data.get(2),
 				data.get(4), vat, data.get(5), data.get(9), data.get(8), payType, data.get(6) };
 		CSV_Conversion.arrayToCSV(fileName, dir, sortedArr);
@@ -181,7 +183,7 @@ public class PDF_Parser {
 		data = Func.removeDuplicates(data);
 
 		fileName = "CarHire_Invoices";
-		dir = "C:/Users/A00275711/Documents/CSV_Files";
+		dir = "C:/Users/"+Utility.user+"/Documents/CSV_Files";
 
 		String[] sortedArr = { data.get(3), provider, data.get(0), data.get(1), data.get(5), data.get(2), data.get(4),
 				data.get(7), data.get(9), data.get(10), data.get(11), data.get(8), payType, data.get(6) };
@@ -196,7 +198,7 @@ public class PDF_Parser {
 		System.out.println("Found Enterprise");
 
 		fileName = "CarHire_Invoices";
-		dir = "C:/Users/A00275711/Documents/CSV_Files";
+		dir = "C:/Users/"+Utility.user+"/Documents/CSV_Files";
 
 		String provider = "ENTERPRISE";
 		String payment = "AGENCY";

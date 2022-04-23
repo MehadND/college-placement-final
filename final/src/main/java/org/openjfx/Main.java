@@ -19,7 +19,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("BeyondTravel Login");
 			primaryStage.setResizable(false);
-			//primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			//WindowStyle.allowDrag(root, primaryStage);
 			primaryStage.show();
 		} catch(Exception e) {

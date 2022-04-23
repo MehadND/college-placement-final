@@ -6,89 +6,115 @@ import javax.mail.internet.MimeBodyPart;
 
 import org.openjfx.Controller;
 
+import com.college.placement.parsers.PDF_Parser;
 import com.college.placement.parsers.ParsePDFFiles;
 
 import java.io.*;
 
-public class SavingAttachments {
+public class SavingAttachments
+{
 	private InputStream inputStream;
 	private OutputStream outputStream;
 	private String fileExtensionType;
-	
+
 	ParsePDFFiles pdfFile;
 	Controller controller;
+	private PDF_Parser parsingPDF;
 
-	public SavingAttachments() {
+	String user = System.getProperty("user.name");
+	File attachmentsFolder = new File("C:/Users/" + user + "/Documents/attachmentsFolder");
+	File savedFileLocation = new File("C:/Users/" + user + "/Documents/CSV_Files");
+
+	public SavingAttachments()
+	{
 		inputStream = null;
 		outputStream = null;
 		fileExtensionType = "";
 	}
 
-	// method for saving attachents from emails into 'attachments' folder
-	public void saveEmailAttachments(Object emailContent) throws MessagingException, IOException {
-		try {
+	/*
+	 * Method used to save attachments.
+	 */
+	public void saveEmailAttachments(Object emailContent) throws MessagingException, IOException
+	{
+		try
+		{
 			pdfFile = new ParsePDFFiles();
-			controller = new Controller();
-			if (emailContent instanceof Multipart) {
+			// controller = new Controller();
+			if (emailContent instanceof Multipart)
+			{
 				Multipart multipart = (Multipart) emailContent;
 				int partsCounter = multipart.getCount();
-				for (int i = 0; i < partsCounter; i++) {
+				for (int i = 0; i < partsCounter; i++)
+				{
 					MimeBodyPart bodyPart = (MimeBodyPart) multipart.getBodyPart(i);
 					// Does not process anything if email contains a part inside a part
-					if (bodyPart.getContent() instanceof Multipart) {
+					if (bodyPart.getContent() instanceof Multipart)
+					{
 						// saveEmailAttachments(bodyPart.getContent(), attachmentFileName);
-					} else {
-						/*
-						 * if(bodyPart.isMimeType("text/html")) // { // fileExtensionType = "html"; // }
-						 * // else // { // if(bodyPart.isMimeType("text/plain")) // { //
-						 * fileExtensionType = "txt"; // } // else // { // fileExtensionType =
-						 * bodyPart.getDataHandler().getName(); // }
-						 */
-
-						// NOTE: DO NOT REALLY NEED THESE FOLLOWING IF-ELSE
-						// names file extension to pdf if the attachment type is PDF
-						if (bodyPart.isMimeType("application/pdf")) {
+					}
+					else
+					{
+						// checks if attachments is pdf, if so then runs parse pdf method
+						if (bodyPart.isMimeType("application/pdf"))
+						{
 							fileExtensionType = "pdf";
-						} else {
+						}
+						// maybe could process docx attachments
+						else
+						{
 							// if any other extension type then do not process it.
 							// Ignore it
 						}
-						String attachmentFileName = "Attachments/" + bodyPart.getFileName();
+						String attachmentFileName = attachmentsFolder + "/" + bodyPart.getFileName();
 						System.out.println("\nFilename.... " + attachmentFileName);
-						controller.getShowAttachmentsList().appendText("Filename: " + attachmentFileName + "\n");
+						// showAttachmentsList.appendText("\nFilename: " + attachmentFileName);
 						outputStream = new FileOutputStream(new File(attachmentFileName));
 						inputStream = bodyPart.getInputStream();
 						int k;
-						while ((k = inputStream.read()) != -1) {
+						while ((k = inputStream.read()) != -1)
+						{
 							outputStream.write(k);
 						}
-						pdfFile.readFiles(new File(attachmentFileName));
+						parsingPDF.parsePDF(attachmentFileName);
 						// }
 					}
 				}
 			}
-		} finally {
-			if (inputStream != null) {
+		} finally
+		{
+			if (inputStream != null)
+			{
 				inputStream.close();
 			}
-			if (outputStream != null) {
+			if (outputStream != null)
+			{
 				outputStream.flush();
 				outputStream.close();
 			}
 		}
 	}
-	
-	public void deleteFiles(File folder) throws IOException {
-	    File[] files = folder.listFiles();
-	    System.out.println("\nStarting Files Deletion in Attachments Folder");
-	     for(File file: files){
-	            if(file.isFile()){
-	                String fileName = file.getName();
-	                boolean del= file.delete();
-	                System.out.println(fileName + " : got deleted ? " + del);
-	            }else if(file.isDirectory()) {
-	                deleteFiles(file);
-	            }
-	        }
-	    }
+
+	/*
+	 * Method that deletes files in local attachments folders. Gets the Folder and
+	 * loops through all the files in the folder. Then deletes file one by one.
+	 */
+	public void deleteFiles(File folder) throws IOException
+	{
+		File[] files = folder.listFiles();
+		System.out.println("\nStarting Files Deletion in Attachments Folder");
+		for (File file : files)
+		{
+			if (file.isFile())
+			{
+				String fileName = file.getName();
+				boolean del = file.delete();
+				System.out.println(fileName + " : got deleted ? " + del);
+			}
+			else if (file.isDirectory())
+			{
+				deleteFiles(file);
+			}
+		}
+	}
 }
