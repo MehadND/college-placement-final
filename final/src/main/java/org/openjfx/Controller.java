@@ -55,6 +55,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -64,105 +66,153 @@ import javafx.stage.Stage;
 
 public class Controller
 {
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+	public Stage stage;
+	public Scene scene;
+	public Parent root;
 
-	private ParsePDFFiles pdfReader;
-	private PDF_Parser parsingPDF;
-	private ReceiveEmail receiveEmail;
-	private SavingAttachments savingAttachments;
+	public ParsePDFFiles pdfReader;
+	public PDF_Parser parsingPDF;
+	public ReceiveEmail receiveEmail;
+	public SavingAttachments savingAttachments;
 
-	private JFileChooser fileChooser;
-	private Desktop d = null;
+	public JFileChooser fileChooser;
+	public Desktop d = null;
+	private Controller controller;
 
 	@FXML
-	private TextField emailAddressField;
+	public TextField emailAddressField;
 	@FXML
-	private PasswordField emailPasswordField;
+	public PasswordField emailPasswordField;
 	@FXML
-	private Button loginButton;
+	public Button loginButton;
 	@FXML
-	private Label statusLabel;
+	public Label statusLabel;
 	@FXML
-	private Label messageLabel;
+	public Label messageLabel;
 	@FXML
-	private Button browseFilesButton;
+	public Button browseFilesButton;
 	@FXML
-	private AnchorPane anchorPane;
+	public AnchorPane anchorPane;
 	@FXML
-	private TextArea showAttachmentsList;
+	public TextArea showAttachmentsList;
 	@FXML
-	private Button processButton;
+	public Button processButton;
 	@FXML
-	private Button deleteAttachButton;
+	public Button deleteAttachButton;
 	@FXML
-	private Button logoutButton;
+	public Button logoutButton;
 	@FXML
-	private Button openSavedButton;
+	public Button openSavedButton;
 	@FXML
-	private Button closeButton;
+	public Button closeButton;
+	@FXML
+	public Button minimizeButton;
 
+
+	/**
+	 * Is called by the main application to give a reference back to itself
+	 * 
+	 * @param mainApp
+	 */
+	public void setMainApp(Controller mainApp)
+	{
+		// this.mainApp = mainApp;
+
+		// pass the main app to the drawerContentController:
+		controller.setMainApp(mainApp);
+	}
 	/*
 	 * Method that deals with mouse entering events for buttons
 	 */
-	@FXML
-	public void mouseEntering()
-	{
-		loginButton.setOnMouseEntered(new EventHandler<Event>()
-		{
-
-			@Override
-			public void handle(Event event)
-			{
-				// TODO Auto-generated method stub
-				loginButton.setStyle(
-						"-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");
-				;
-
-			}
-		});
-
-		browseFilesButton.setOnMouseEntered(new EventHandler<Event>()
-		{
-
-			@Override
-			public void handle(Event event)
-			{
-				// TODO Auto-generated method stub
-				browseFilesButton.setStyle(
-						"-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");
-				;
-
-			}
-		});
-
-		openSavedButton.setOnMouseEntered(new EventHandler<Event>()
-		{
-
-			@Override
-			public void handle(Event event)
-			{
-				// TODO Auto-generated method stub
-				openSavedButton.setStyle(
-						"-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;");
-				;
-
-			}
-		});
-	}
-
 	/*
+	 * @FXML public void mouseEntering() { loginButton.setOnMouseEntered(new
+	 * EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub loginButton.setStyle(
+	 * "-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;"
+	 * ); ;
+	 * 
+	 * } });
+	 * 
+	 * browseFilesButton.setOnMouseEntered(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub browseFilesButton.setStyle(
+	 * "-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;"
+	 * ); ;
+	 * 
+	 * } });
+	 * 
+	 * openSavedButton.setOnMouseEntered(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub openSavedButton.setStyle(
+	 * "-fx-background-color: #ff7777; -fx-text-fill: white; -fx-border-color: black; -fx-border-width:2;"
+	 * ); ;
+	 * 
+	 * } });
+	 * 
+	 * closeButton.setOnMouseEntered(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub closeButton.setStyle(
+	 * "-fx-background-color: white; -fx-text-fill: red; -fx-border-color: black; -fx-border-width:1;"
+	 * ); ;} });
+	 * 
+	 * minimizeButton.setOnMouseEntered(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub minimizeButton.setStyle(
+	 * "-fx-background-color: white; -fx-text-fill: red; -fx-border-color: black; -fx-border-width:1;"
+	 * ); ;
+	 * 
+	 * } }); }
+	 * 
+	 * 
 	 * Method that deals with mouse exiting events for buttons
+	 * 
+	 * @FXML public void mouseExiting() {
+	 * 
+	 * loginButton.setOnMouseExited(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub loginButton.
+	 * setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:1; "
+	 * ); ;} });
+	 * 
+	 * browseFilesButton.setOnMouseExited(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub browseFilesButton.
+	 * setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:1;"
+	 * ); ;} });
+	 * 
+	 * openSavedButton.setOnMouseExited(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub openSavedButton.
+	 * setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:1;"
+	 * ); ;} });
+	 * 
+	 * closeButton.setOnMouseExited(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub closeButton.
+	 * setStyle("-fx-background-color: null; -fx-text-fill: black; -fx-border-color: white; -fx-border-width:1;"
+	 * );;} }); minimizeButton.setOnMouseExited(new EventHandler<Event>() {
+	 * 
+	 * @Override public void handle(Event event) { // TODO Auto-generated method
+	 * stub minimizeButton.
+	 * setStyle("-fx-background-color: null; -fx-text-fill: black; -fx-border-color: white; -fx-border-width:1;"
+	 * );;} }); // processButton.
+	 * setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:1;"
+	 * ); // deleteAttachButton.
+	 * setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:1;"
+	 * ); // logoutButton.
+	 * setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:1;"
+	 * ); }
 	 */
-	@FXML
-	public void mouseExiting()
-	{
-		loginButton.setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:2; ");
-		browseFilesButton.setStyle("-fx-background-color:null; -fx-border-color: black; -fx-border-width:2;");
-		openSavedButton.setStyle("-fx-background-color: null; -fx-border-color: black; -fx-border-width:2;");
-
-	}
 
 	/*
 	 * Method that switches scene to Login screen
@@ -187,6 +237,7 @@ public class Controller
 		{
 			Parent root = FXMLLoader.load(getClass().getResource("/Application.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setTitle("BeyondTravel Application");
@@ -319,7 +370,7 @@ public class Controller
 		scene = new Scene(root);
 		stage.close();
 	}
-	
+
 	public void minimize(ActionEvent event) throws IOException
 	{
 		Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
@@ -327,7 +378,7 @@ public class Controller
 		scene = new Scene(root);
 		stage.setIconified(true);
 	}
-	
+
 	public Controller()
 	{
 	}
