@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" scaleShape="false" style="-fx-border-width: 2;" styleClass="window" stylesheets="@application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" scaleShape="false" styleClass="window" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
 	<children>
 		<Button fx:id="loginButton" layoutX="79.0" layoutY="315.0" mnemonicParsing="false" onAction="#switchToApplicationScreen" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Login" />
-		<TextField fx:id="emailAddressField" layoutX="51.0" layoutY="161.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter email address..." />
-		<PasswordField fx:id="emailPasswordField" layoutX="51.0" layoutY="218.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter email password..." />
 		<Separator layoutX="288.0" layoutY="67.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="12.0" />
 		<Label fx:id="statusLabel" alignment="CENTER" layoutX="51.0" layoutY="265.0" prefHeight="27.0" prefWidth="170.0" text="Status:" textFill="#ff7171">
 			<font>
@@ -37,7 +37,20 @@
 			</font>
 		</Label>
 		<Button fx:id="openSavedButton" layoutX="385.0" layoutY="216.0" mnemonicParsing="false" onAction="#openSaves" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Open Exports" />
-		<Label fx:id="customTitleBar" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="596.0" styleClass="customTitleBar" />
+		<Label fx:id="customTitleBar" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="596.0" styleClass="customTitleBar" text="BeyondTravel" textFill="#ffd900">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView cache="true" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" scaleX="0.7" scaleY="0.7" scaleZ="0.7">
+               <image>
+                  <Image url="@../resources/ApplicationIcon.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
 		<Button fx:id="minimizeButton" alignment="CENTER" layoutX="485.0" layoutY="4.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="50.0" styleClass="minimizeButton" stylesheets="@application.css" text="-" textAlignment="CENTER">
 			<opaqueInsets>
 				<Insets />
@@ -54,5 +67,7 @@
 				<Font size="13.0" />
 			</font>
 		</Button>
+      <JFXTextField fx:id="emailAddressField" labelFloat="true" layoutX="51.0" layoutY="162.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter Email Address" />
+      <JFXPasswordField fx:id="emailPasswordField" labelFloat="true" layoutX="51.0" layoutY="218.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter Password" />
 	</children>
 </AnchorPane>
