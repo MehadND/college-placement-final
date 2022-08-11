@@ -28,6 +28,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -62,7 +63,7 @@ public class ParsePDFFiles extends PDFTextStripper
 	private boolean isSaved = false;
 	private List<String> filesReadList = new ArrayList<String>();
 
-
+	private PDF_Parser parser;
 
 	/**
 	 * Instantiate a new PDFTextStripper object.
@@ -99,7 +100,13 @@ public class ParsePDFFiles extends PDFTextStripper
 		for (File f : fileName)
 		{
 			filesReadList.add(f.getName());
-			// readFiles(f);
+			//readFiles(f);
+		}
+
+		for (String file : filesReadList)
+		{
+			System.out.println(file);
+			parser.parsePDF(file);
 		}
 	}
 
@@ -114,8 +121,8 @@ public class ParsePDFFiles extends PDFTextStripper
 	 * Writer dummy = new OutputStreamWriter(new ByteArrayOutputStream());
 	 * stripper.writeText(document, dummy); int index = 0;
 	 * 
-
-	/*
+	 * 
+	 * /*
 	 * 
 	 * // loops through all the words in words (ArrayList) and then gets relevant
 	 * info // based on words found (see switch statements) for (String word :
@@ -232,9 +239,9 @@ public class ParsePDFFiles extends PDFTextStripper
 	 * ""; valueAttribute = ""; } finally { if (document != null) {
 	 * document.close(); } else { document.close(); } } }
 	 * 
-	 */ 
-
-	/*
+	 * 
+	 * 
+	 * 
 	 * public void writeAsExcelFile(File f, String sheetName) { isSaved = false; //
 	 * Writes to an excel file (using apache.poi/tika) // workbook XSSFWorkbook
 	 * workbook = new XSSFWorkbook();

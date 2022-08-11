@@ -29,7 +29,8 @@ public class Main extends Application {
 					primaryStage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
 				});
 			});
-			primaryStage.getIcons().add(new Image("ApplicationIcon.png"));
+			Image img = new Image(getClass().getResource("/resources/ApplicationIcon.png").toURI().toString());
+			primaryStage.getIcons().add(img);
 			
 			//WindowStyle.allowDrag(root, primaryStage);
 			primaryStage.show();

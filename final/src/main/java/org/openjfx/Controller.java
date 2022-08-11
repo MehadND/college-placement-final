@@ -25,6 +25,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.college.placement.connectivity.ReceiveEmail;
 import com.college.placement.connectivity.SavingAttachments;
@@ -32,36 +33,24 @@ import com.college.placement.connectivity.Utility;
 import com.college.placement.parsers.PDF_Parser;
 import com.college.placement.parsers.ParsePDFFiles;
 
-//import dorkbox.notify.Notify;
-//import dorkbox.notify.Pos;
-//import dorkbox.util.ActionHandler;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+//import dorkbox.notify.Notify;
+//import dorkbox.notify.Pos;
+//import dorkbox.util.ActionHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Controller
@@ -232,10 +221,11 @@ public class Controller
 	 */
 	public void switchToApplicationScreen(ActionEvent event) throws IOException
 	{
+		Parent root = FXMLLoader.load(getClass().getResource("/Application.fxml"));
 
 		if (emailAddressField.getText().equals(Utility.email) && emailPasswordField.getText().equals(Utility.password))
 		{
-			Parent root = FXMLLoader.load(getClass().getResource("/Application.fxml"));
+			System.out.println("CORRECT EMAIL..PROCEED");
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 			scene = new Scene(root);
@@ -246,6 +236,7 @@ public class Controller
 
 		else
 		{
+			System.out.println("INCORRECT EMAIL...");
 			statusLabel.setText("Login Unsuccessful");
 		}
 	}
@@ -257,14 +248,42 @@ public class Controller
 	public void handleParsers()
 	{
 		System.out.println("Select a file to parse");
+		boolean pdfFileSaved = false;
+		
 		try
 		{
-			pdfReader = new ParsePDFFiles();
+			System.out.println("PARSING....");
+			parsingPDF = new PDF_Parser();
+			File[] fileName = {};
 
+			// Using this process to invoke the constructor,
+	// JFileChooser points to user's default directory
+			fileChooser = new JFileChooser(Utility.attachmentsFolder);
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Files", "pdf");
+			fileChooser.setFileFilter(filter);
+			fileChooser.setMultiSelectionEnabled(true);
+	// Open the save dialog
+			int r = fileChooser.showOpenDialog(null);
+
+			// if the user selects a file
+			if (r == JFileChooser.APPROVE_OPTION)
+
+			{
+				// set the label to the path of the selected file
+				fileName = (fileChooser.getSelectedFiles());
+			}
+
+			for (File f : fileName)
+			{
+				String attachmentFileName = Utility.attachmentsFolder + "/" + f.getName();
+				parsingPDF.parsePDF(attachmentFileName);
+				pdfFileSaved = true;
+				//readFiles(f);
+			}
 			// modify my own pdf parsers so that it works with jack's
-			pdfReader.readFile();
-			boolean pdfFileSaved = pdfReader.writeChecker();
-
+//			pdfReader.readFile();
+//			boolean pdfFileSaved = pdfReader.writeChecker();
+//
 			if (pdfFileSaved == true)
 				messageLabel.setText("File Saved");
 			// messageLabel.setText("File "+pdfReader.getFilesReadList().toString()+".xlsx

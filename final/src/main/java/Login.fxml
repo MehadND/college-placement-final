@@ -6,68 +6,122 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" scaleShape="false" styleClass="window" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #2C344B;" styleClass="window" stylesheets="@application.css" xmlns="http://javafx.com/javafx/13.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller">
 	<children>
-		<Button fx:id="loginButton" layoutX="79.0" layoutY="315.0" mnemonicParsing="false" onAction="#switchToApplicationScreen" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Login" />
 		<Separator layoutX="288.0" layoutY="67.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="12.0" />
-		<Label fx:id="statusLabel" alignment="CENTER" layoutX="51.0" layoutY="265.0" prefHeight="27.0" prefWidth="170.0" text="Status:" textFill="#ff7171">
-			<font>
-				<Font name="System Italic" size="18.0" />
-			</font>
-		</Label>
-		<Button fx:id="browseFilesButton" layoutX="385.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleParsers" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Browse Files" />
-		<Label layoutX="102.0" layoutY="87.0" prefHeight="38.0" prefWidth="69.0" styleClass="emailText" text="EMAIL" textAlignment="CENTER" textFill="#73a9ff" underline="true">
-			<font>
-				<Font name="System Bold Italic" size="22.0" />
-			</font>
-		</Label>
-		<Label layoutX="393.0" layoutY="87.0" prefHeight="38.0" prefWidth="97.0" styleClass="parsersText" text="PARSERS" textAlignment="CENTER" textFill="#73a9ff" underline="true">
-			<font>
-				<Font name="System Bold Italic" size="22.0" />
-			</font>
-		</Label>
-		<Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="341.0" layoutY="271.0" prefHeight="27.0" prefWidth="170.0" text="Message" textFill="#ff7171" wrapText="true">
-			<font>
-				<Font name="System Italic" size="18.0" />
-			</font>
-		</Label>
-		<Button fx:id="openSavedButton" layoutX="385.0" layoutY="216.0" mnemonicParsing="false" onAction="#openSaves" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Open Exports" />
-		<Label fx:id="customTitleBar" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="596.0" styleClass="customTitleBar" text="BeyondTravel" textFill="#ffd900">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <graphic>
-            <ImageView cache="true" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" scaleX="0.7" scaleY="0.7" scaleZ="0.7">
-               <image>
-                  <Image url="@../resources/ApplicationIcon.png" />
-               </image>
-            </ImageView>
-         </graphic></Label>
-		<Button fx:id="minimizeButton" alignment="CENTER" layoutX="485.0" layoutY="4.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="50.0" styleClass="minimizeButton" stylesheets="@application.css" text="-" textAlignment="CENTER">
-			<opaqueInsets>
-				<Insets />
-			</opaqueInsets>
-			<font>
-				<Font name="System Bold" size="13.0" />
-			</font>
-		</Button>
-		<Button fx:id="closeButton" alignment="CENTER" layoutX="540.0" layoutY="4.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#closeButton" prefHeight="25.0" prefWidth="50.0" styleClass="closeButton" stylesheets="@application.css" text="X">
-			<opaqueInsets>
-				<Insets />
-			</opaqueInsets>
-			<font>
-				<Font size="13.0" />
-			</font>
-		</Button>
-      <JFXTextField fx:id="emailAddressField" labelFloat="true" layoutX="51.0" layoutY="162.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter Email Address" />
-      <JFXPasswordField fx:id="emailPasswordField" labelFloat="true" layoutX="51.0" layoutY="218.0" prefHeight="25.0" prefWidth="170.0" promptText="Enter Password" />
+      <HBox layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="595.0" styleClass="customTitleBar">
+         <children>
+            <Label prefHeight="30.0" prefWidth="300.0" text="BeyondTravel" textFill="#ffe056" translateX="10.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+      		<Button fx:id="minimizeButton" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="50.0" styleClass="minimizeButton" textAlignment="CENTER" translateX="190.0" translateY="2.0">
+      			<opaqueInsets>
+      				<Insets />
+      			</opaqueInsets>
+      			<font>
+      				<Font name="System Bold" size="13.0" />
+      			</font>
+               <graphic>
+                  <FontIcon iconLiteral="mdi-window-minimize" iconSize="12" />
+               </graphic>
+      		</Button>
+      		<Button fx:id="closeButton" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#closeButton" prefHeight="25.0" prefWidth="50.0" styleClass="closeButton" translateX="193.0" translateY="2.0">
+      			<opaqueInsets>
+      				<Insets />
+      			</opaqueInsets>
+      			<font>
+      				<Font size="13.0" />
+      			</font>
+               <graphic>
+                  <FontIcon iconLiteral="mdi-window-close" />
+               </graphic>
+      		</Button>
+         </children>
+      </HBox>
+      <VBox layoutX="350.0" layoutY="80.0" prefHeight="280.0" prefWidth="200.0">
+         <children>
+      		<Label prefHeight="38.0" prefWidth="97.0" styleClass="parsersText" text="PARSERS" textAlignment="CENTER" textFill="#73a9ff" underline="true">
+      			<font>
+      				<Font name="System Bold Italic" size="22.0" />
+      			</font>
+               <VBox.margin>
+                  <Insets bottom="40.0" left="50.0" />
+               </VBox.margin>
+      		</Label>
+      		<Button fx:id="browseFilesButton" mnemonicParsing="false" onMouseClicked="#handleParsers" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Browse Files">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="35.0" />
+               </VBox.margin>
+            </Button>
+      		<Button fx:id="openSavedButton" mnemonicParsing="false" onAction="#openSaves" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Open Exports">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="35.0" />
+               </VBox.margin>
+            </Button>
+      		<Label fx:id="messageLabel" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="170.0" text="Message" textFill="#ff7171" wrapText="true">
+      			<font>
+      				<Font name="System Italic" size="18.0" />
+      			</font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+      		</Label>
+         </children>
+      </VBox>
+      <VBox layoutX="50.0" layoutY="80.0" prefHeight="280.0" prefWidth="200.0">
+         <children>
+      		<Label prefHeight="38.0" prefWidth="69.0" styleClass="emailText" text="EMAIL" textAlignment="CENTER" textFill="#73a9ff" underline="true">
+      			<font>
+      				<Font name="System Bold Italic" size="22.0" />
+      			</font>
+               <VBox.margin>
+                  <Insets bottom="40.0" left="50.0" />
+               </VBox.margin>
+      		</Label>
+            <HBox prefHeight="30.0" prefWidth="170.0">
+               <children>
+                  <FontIcon iconLiteral="mdi-email" iconSize="26" scaleX="1.2" scaleY="1.2" stroke="#c4f595" strokeWidth="0.6" translateX="1.5" translateY="3.0" />
+                  <JFXTextField fx:id="emailAddressField" focusColor="#82aaff" prefHeight="30.0" prefWidth="130.0" promptText="Enter Email Address" scaleY="0.9" styleClass="emailField" stylesheets="@application.css" translateX="8.0" translateY="-3.0" unFocusColor="#c6c6c6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="170.0">
+               <children>
+                  <FontIcon iconLiteral="mdi-lock" iconSize="24" scaleX="1.2" scaleY="1.2" stroke="#c4f595" strokeWidth="0.6" translateX="1.5" translateY="3.5" />
+                  <JFXPasswordField fx:id="emailPasswordField1" focusColor="#82aaff" prefHeight="30.0" prefWidth="130.0" promptText="Enter Password" scaleY="0.9" styleClass="passwordField" stylesheets="@application.css" translateX="8.0" translateY="-3.0" unFocusColor="#c6c6c6" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </HBox>
+      		<Label fx:id="statusLabel" alignment="CENTER" prefHeight="27.0" prefWidth="170.0" text="Status:" textFill="#ff7171">
+      			<font>
+      				<Font name="System Italic" size="18.0" />
+      			</font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+      		</Label>
+      		<Button fx:id="loginButton" mnemonicParsing="false" onAction="#switchToApplicationScreen" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Login">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
 	</children>
 </AnchorPane>

@@ -18,5 +18,5 @@ public class Utility
 	public static String mailStoreType = "imaps";
 	
 	public static String email = "forGroupTwo@outlook.com";
-	public static String password = "kvgrqaswszdsweve";
+	public static String password = "nobibbxvhjrmpaap";
 }

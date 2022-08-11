@@ -1,19 +1,19 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.button { /* using style class for selector (ids are for single nodes) */
+.btn { /* using style class for selector (ids are for single nodes) */
     /* assign default values */
-    -fx-background-color: null;
+    -fx-background-color:  #1721419a;
     -fx-border-width : 1;
-    -fx-border-color: black;
+    /* -fx-border-color: rgba(245, 242, 90, 0.671); */
     -fx-border-radius:80%;
-    -fx-text-fill:black;
+    -fx-text-fill:#c6c6c6;
 }
 
-.button:hover{
-    -fx-background-color: #E83151;
+.btn:hover{
+    -fx-background-color: #172141;
     -fx-border-width : 1;
     -fx-border-color: black;
     -fx-border-radius:5;
-    -fx-text-fill:#ffffff;
+    -fx-text-fill:#c6c6c6;
 }
 /* 
 .button { 
@@ -52,51 +52,52 @@
 .minimizeButton{ /* using style class for selector (ids are for single nodes) */
     /* assign default values */
     -fx-background-color: null;
-    -fx-border-width : 1;
+    /* -fx-border-width : 1;
     -fx-border-color: white;
-    -fx-border-radius:5;
+    -fx-border-radius:5; */
     -fx-padding:-5;
     
 }
 
 .minimizeButton:hover{
-    -fx-background-color: white;
-    -fx-border-width : 1;
+    -fx-background-color: rgb(136, 136, 136);
+    /* -fx-border-width : 1;
     -fx-border-color: black;
-    -fx-border-radius:5;
+    -fx-border-radius:5; */
     -fx-padding:-5;
-    -fx-text-fill:red
+    -fx-text-fill:red;
 }
 
 .closeButton{ /* using style class for selector (ids are for single nodes) */
     /* assign default values */
+
     -fx-background-color: null;
-    -fx-border-width : 1;
+    /* -fx-border-width : 1;
     -fx-border-color: white;
-    -fx-border-radius:5;
+    -fx-border-radius:5; */
     -fx-padding:-5;
+
 }
 
 .closeButton:hover{
-    -fx-background-color: white;
-    -fx-border-width : 1;
+    -fx-background-color: rgb(255, 85, 85);
+    /* -fx-border-width : 1;
     -fx-border-color: black;
-    -fx-border-radius:5;
+    -fx-border-radius:5; */
     -fx-padding:-5;
-    -fx-text-fill:red
 }
 
 .customTitleBar{
-    -fx-background-color: #8499B1;
+    -fx-background-color: #39174160;
 
 }
 
 .emailText{
-    -fx-text-fill: #47a4b3;
+    -fx-text-fill: #9eb4fce5;
 }
 
 .parsersText{
-    -fx-text-fill: #6477ca;
+    -fx-text-fill: #9eb4fce5;
 }
 
 .window{
@@ -107,4 +108,14 @@
 .window:pressed{
     -fx-border-color:rgb(248, 121, 121);
     -fx-border-width:3;
+}
+
+.emailField{
+    -fx-text-inner-color: #D8D8D8;
+    -fx-prompt-text-fill: #c6c6c6;
+}
+
+.passwordField{
+    -fx-text-inner-color: #D8D8D8;
+    -fx-prompt-text-fill: #c6c6c6;
 }
